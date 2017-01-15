@@ -15,8 +15,6 @@ class SendUrlNotification
 {
     use DispatchesJobs;
 
-    use DispatchesJobs;
-
     /**
      * Handle the event.
      *

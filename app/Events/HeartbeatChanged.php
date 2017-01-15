@@ -18,7 +18,7 @@ abstract class HeartbeatChanged
     public $heartbeat;
 
     /**
-     * HeartbeatRecovered constructor.
+     * HeartbeatChanged constructor.
      *
      * @param Heartbeat $heartbeat
      */

@@ -10,7 +10,7 @@ use REBELinBLUE\Deployer\Jobs\RequestProjectCheckUrl;
 /**
  * Schedule the url check.
  */
-class CheckUrl extends Command
+class CheckUrls extends Command
 {
     use DispatchesJobs;
 

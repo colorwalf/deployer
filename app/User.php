@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use REBELinBLUE\Deployer\Notifications\System\ResetPassword;
-use REBELinBLUE\Deployer\View\Presenters\UserPresenter;
 use REBELinBLUE\Deployer\Traits\BroadcastChanges;
+use REBELinBLUE\Deployer\View\Presenters\UserPresenter;
 use Robbo\Presenter\PresentableInterface;
 
 /**

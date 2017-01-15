@@ -16,6 +16,9 @@ class CheckUrl extends Model
 {
     use SoftDeletes, BroadcastChanges, DispatchesJobs;
 
+    const OK       = 0;
+    const MISSING  = 1;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -80,5 +83,15 @@ class CheckUrl extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * Determines whether the URL is currently online.
+     *
+     * @return bool
+     */
+    public function isHealthy()
+    {
+        return ($this->last_status === self::OK);
     }
 }

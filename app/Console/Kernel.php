@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bootstrap\ConfigureLogging;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use REBELinBLUE\Deployer\Bootstrap\ConfigureLogging as ConsoleLogging;
 use REBELinBLUE\Deployer\Console\Commands\CheckHeartbeats;
-use REBELinBLUE\Deployer\Console\Commands\CheckUrl;
+use REBELinBLUE\Deployer\Console\Commands\CheckUrls;
 use REBELinBLUE\Deployer\Console\Commands\ClearOldKeys;
 use REBELinBLUE\Deployer\Console\Commands\ClearOrphanAvatars;
 use REBELinBLUE\Deployer\Console\Commands\ClearOrphanMirrors;
@@ -48,7 +48,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         CheckHeartbeats::class,
-        CheckUrl::class,
+        CheckUrls::class,
         CreateUser::class,
         ClearOrphanAvatars::class,
         ClearOrphanMirrors::class,

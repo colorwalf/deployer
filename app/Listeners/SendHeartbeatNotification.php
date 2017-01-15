@@ -8,7 +8,7 @@ use REBELinBLUE\Deployer\Notifications\Configurable\HeartbeatMissing;
 use REBELinBLUE\Deployer\Notifications\Configurable\HeartbeatRecovered;
 
 /**
- * Event handler class for heartbeat recovery.
+ * Event handler class for heartbeat notifications.
  **/
 class SendHeartbeatNotification
 {

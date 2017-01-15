@@ -1,34 +1,13 @@
 # Webhooks
 
-Webhooks allow you to build integrations which react to certain events from Deployer.
-When one of these events is triggered, a HTTP POST request will be made to the configured URL.
+There are 2 types of webhooks in Deployer, inbound and outbound webhooks.
 
-Webhooks can be configured from the "Notifications" tab.
+Inbound webhooks are used to trigger actions within Deployer, whereas Outbound webhooks are called when 
+certain events occur within Deployer.
 
-## Events
+## Outbound
 
-When configuring the webhook you can choose which events will trigger a request. The request will contain a 
-`X-Deployer-Event` header with a value of the event which triggered it.
+For more information on Outbound webhooks see the [notifications](/docs/NOTIFICATIONS.md) document.
 
-| Event                | Description                                            |
-|----------------------|--------------------------------------------------------|
-| notification_test    | Triggered when adding or editing a notification        |
-| deployment_succeeded | Triggered when a deployment finishes successfully      |
-| deployment_failed    | Triggered when a deployment fails                      |
-| heartbeat_missing    | Triggered when a heartbeat does not check-in on time   |
-| heartbeat_recovered  | Triggered when a previously missing heartbeat recovers |
+## Inbound
 
-## Payloads
-
-Each event has specific payload content, the payload is sent as JSON.
-
-### Headers
-
-Each request will contain the following headers.
-
-| Header                     | Description                                                            |
-|----------------------------|------------------------------------------------------------------------|
-| X-Deployer-Event           | The event which triggered the webhook                                  |
-| X-Deployer-Notification-Id | The unique ID for the notification channel which triggered the webhook |
-| User-Agent                 | Deployer plus the version, e.g. `Deployer/1.5.0`                       |
-| Content-Type               | Will be set to application/json                                        |

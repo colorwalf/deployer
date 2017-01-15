@@ -22,7 +22,6 @@ var app = app || {};
             $('#title').val('');
             $('#url').val('');
             $('#period_5').prop('checked', true);
-            //$('#is_report').prop('checked', false);
         }
 
         modal.find('.modal-title span').text(title);
@@ -77,9 +76,8 @@ var app = app || {};
         url.save({
             title:      $('#title').val(),
             url:        $('#url').val(),
-            is_report:  true, // $('#is_report').prop('checked'),
             period:     parseInt($('input[name=period]:checked').val()),
-            project_id: $('input[name="project_id"]').val()
+            project_id: parseInt($('input[name="project_id"]').val())
         }, {
             wait: true,
             success: function(model, response, options) {
@@ -108,7 +106,7 @@ var app = app || {};
                     var name = element.attr('name');
 
                     if (typeof errors[name] !== 'undefined') {
-                        var parent = element.parent('div');
+                        var parent = element.parents('div.form-group');
                         parent.addClass('has-error');
                         parent.append($('<span>').attr('class', 'label label-danger').text(errors[name]));
                     }
@@ -221,12 +219,6 @@ var app = app || {};
 
             data.interval_label = data.period + ' ' + Lang.get('checkUrls.length');
 
-            // data.report = Lang.get('app.no');
-
-            // if (data.is_report) {
-            //     data.report = Lang.get('app.ues');
-            // }
-
             this.$el.html(this.template(data));
 
             return this;
@@ -236,7 +228,6 @@ var app = app || {};
             $('#title').val(this.model.get('title'));
             $('#url').val(this.model.get('url'));
             $('#period_' + this.model.get('period')).prop('checked', true);
-            $('#is_report').prop('checked', this.model.get('is_report'));
         }
     });
 

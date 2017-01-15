@@ -2,8 +2,7 @@
 
 namespace REBELinBLUE\Deployer\Github;
 
-use Httpful\Exception\ConnectionErrorException;
-use Httpful\Request;
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Cache\Repository as CacheRepository;
 use REBELinBLUE\Deployer\Contracts\Github\LatestReleaseInterface;
 
@@ -44,26 +43,24 @@ class LatestRelease implements LatestReleaseInterface
         $cache_for = self::CACHE_TIME_IN_HOURS * 60;
 
         $release = $this->cache->remember('latest_version', $cache_for, function () {
-            $request = Request::get($this->github_url)
-                              ->timeoutIn(5)
-                              ->expectsJson()
-                              ->withAccept('application/vnd.github.v3+json');
+            $headers = [
+                'Accept'     => 'application/vnd.github.v3+json',
+                'User-Agent' => USER_AGENT,
+            ];
 
             if (config('deployer.github_oauth_token')) {
-                $request->withAuthorization('token ' . config('deployer.github_oauth_token'));
+                $headers['OAUTH-TOKEN'] = config('deployer.github_oauth_token');
             }
 
             try {
-                $response = $request->send();
-            } catch (ConnectionErrorException $exception) {
+                $response = (new Client(['timeout'  => 5]))->get($this->github_url, [
+                    'headers' => $headers,
+                ]);
+            } catch (\Exception $exception) {
                 return false;
             }
 
-            if ($response->hasErrors()) {
-                return false;
-            }
-
-            return $response->body;
+            return json_decode($response->getBody());
         });
 
         if (is_object($release)) {

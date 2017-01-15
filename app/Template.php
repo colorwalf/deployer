@@ -3,7 +3,7 @@
 namespace REBELinBLUE\Deployer;
 
 use Illuminate\Database\Eloquent\Model;
-use REBELinBLUE\Deployer\Presenters\CommandPresenter;
+use REBELinBLUE\Deployer\View\Presenters\CommandPresenter;
 use REBELinBLUE\Deployer\Traits\ProjectRelations;
 use Robbo\Presenter\PresentableInterface;
 

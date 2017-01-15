@@ -44,8 +44,8 @@ class ProfileController extends Controller
         Google2FA $google2fa,
         LanguageManager $languageManager
     ) {
-        $this->repository = $repository;
-        $this->google2fa  = $google2fa;
+        $this->repository      = $repository;
+        $this->google2fa       = $google2fa;
         $this->languageManager = $languageManager;
     }
 
@@ -69,7 +69,7 @@ class ProfileController extends Controller
             'google_2fa_url'  => $img,
             'google_2fa_code' => $code,
             'title'           => Lang::get('users.update_profile'),
-            'locales'         => $this->languageManager->getAvailableLanguages()
+            'locales'         => $this->languageManager->getAvailableLanguages(),
         ]);
     }
 

@@ -11,7 +11,7 @@
 
 Deployer is a PHP Application deployment system powered by [Laravel 5.3](http://laravel.com), written & maintained by [Stephen Ball](https://github.com/REBELinBLUE).
 
-Check out the [releases](https://github.com/REBELinBLUE/deployer/releases), [license](/LICENSE.md), [screenshots](/SCREENSHOTS.md), and [contribution guidelines](/.github/CONTRIBUTING.md).
+Check out the [releases](https://github.com/REBELinBLUE/deployer/releases), [license](/LICENSE.md), [screenshots](/docs/SCREENSHOTS.md), and [contribution guidelines](/.github/CONTRIBUTING.md).
 
 ## What it does
 
@@ -117,11 +117,11 @@ $ php artisan app:install
 $ editor .env
 ```
 
-7. Configure your web server to point to `public/`, see `examples/` for Apache and nginx sample configuration files. If you use Apache you will need to ensure you have the `mod_rewrite` module enabled.
+7. Configure your web server to point to `public/`, see `docs/examples/` for Apache and nginx sample configuration files. If you use Apache you will need to ensure you have the `mod_rewrite` module enabled.
 
 8. Start socket server and setup cron jobs.
-    If you are not configuring `supervisor` you will need to manually start the socket server with `node socket.js` (listens on port 6001 by default) and setup cron jobs, see `examples/crontab`.
-    If you are configuring `supervisor` see `examples/supervisor.conf`
+    If you are not configuring `supervisor` you will need to manually start the socket server with `node socket.js` (listens on port 6001 by default) and setup cron jobs, see `docs/examples/crontab`.
+    If you are configuring `supervisor` see `docs/examples/supervisor.conf`
 
 ### Updating
 

@@ -20,6 +20,10 @@ class UpdateServiceProvider extends ServiceProvider
         if (!defined('APP_VERSION')) {
             define('APP_VERSION', trim(file_get_contents(app_path('../VERSION'))));
         }
+
+        if (!defined('USER_AGENT')) {
+            define('USER_AGENT', 'Deployer/' . APP_VERSION);
+        }
     }
 
     /**

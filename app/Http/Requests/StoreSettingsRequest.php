@@ -19,7 +19,7 @@ class StoreSettingsRequest extends Request
             'skin'     => 'required|in:yellow,yellow-light,red,red-light,green,' .
                           'green-light,purple,purple-light,blue,blue-light',
             'scheme'   => 'required|in:default,afterglow,monokai,dawn,solarized-dark,solarized-light',
-            'language' => 'required|in:en,zh'
+            'language' => 'required|in:en,zh',
         ];
     }
 }

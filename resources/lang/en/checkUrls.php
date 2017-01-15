@@ -10,7 +10,6 @@ return [
     'titleTip'           => 'Admin Panel',
     'url'                => 'URL',
     'frequency'          => 'Frequency',
-    'is_report'          => 'Report when failed',
     'length'             => 'Minutes',
     'warning'            => 'The link could not be saved, please check the form below.',
     'last_status'        => 'Status',

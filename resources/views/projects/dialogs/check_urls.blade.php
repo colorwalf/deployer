@@ -16,11 +16,17 @@
 
                     <div class="form-group">
                         <label for="title">{{ Lang::get('checkUrls.title') }}</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{{ Lang::get('checkUrls.titleTip') }}" />
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-tag"></i></div>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="{{ Lang::get('checkUrls.titleTip') }}" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="url">{{ Lang::get('checkUrls.url') }}</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="http://admin.example.com/" />
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-external-link"></i></div>
+                            <input type="text" class="form-control" id="url" name="url" placeholder="http://admin.example.com/" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="period">{{ Lang::get('checkUrls.frequency') }}</label>

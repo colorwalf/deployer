@@ -21,7 +21,7 @@ class CheckUrl extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'url', 'project_id', 'period', 'is_report'];
+    protected $fillable = ['title', 'url', 'project_id', 'period'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -38,7 +38,7 @@ class CheckUrl extends Model
     protected $casts = [
         'id'         => 'integer',
         'project_id' => 'integer',
-        'is_report'  => 'boolean',
+        'missed'     => 'integer',
         'period'     => 'integer',
     ];
 
@@ -80,40 +80,5 @@ class CheckUrl extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
-    }
-
-    /**
-     * Generates a slack payload for the link failure.
-     *
-     * @return array
-     */
-    public function notificationPayload()
-    {
-        $message = Lang::get('checkUrls.message', ['link' => $this->title]);
-
-        $payload = [
-            'attachments' => [
-                [
-                    'fallback' => $message,
-                    'text'     => $message,
-                    'color'    => 'danger',
-                    'fields'   => [
-                        [
-                            'title' => Lang::get('notifications.project'),
-                            'value' => sprintf(
-                                '<%s|%s>',
-                                route('projects', ['id' => $this->project_id]),
-                                $this->project->name
-                            ),
-                            'short' => true,
-                        ],
-                    ],
-                    'footer' => Lang::get('app.name'),
-                    'ts'     => time(),
-                ],
-            ],
-        ];
-
-        return $payload;
     }
 }

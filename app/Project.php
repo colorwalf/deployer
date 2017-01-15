@@ -5,7 +5,7 @@ namespace REBELinBLUE\Deployer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
-use REBELinBLUE\Deployer\Presenters\ProjectPresenter;
+use REBELinBLUE\Deployer\View\Presenters\ProjectPresenter;
 use REBELinBLUE\Deployer\Scripts\Runner as Process;
 use REBELinBLUE\Deployer\Traits\BroadcastChanges;
 use REBELinBLUE\Deployer\Traits\ProjectRelations;
@@ -32,7 +32,7 @@ class Project extends Model implements PresentableInterface
      * @var array
      */
     protected $hidden = ['private_key', 'created_at', 'deleted_at', 'updated_at', 'hash',
-                         'updated_at', 'servers', 'commands', 'hash', 'notifyEmails',
+                         'updated_at', 'servers', 'commands', 'hash',
                          'group', 'servers', 'commands', 'heartbeats', 'checkUrls',
                          'notifications', 'deployments', 'shareFiles', 'configFiles', ];
 
@@ -397,7 +397,7 @@ class Project extends Model implements PresentableInterface
     /**
      * Belongs to relationship.
      *
-     * @return Group
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function group()
     {
@@ -407,7 +407,7 @@ class Project extends Model implements PresentableInterface
     /**
      * Has many relationship.
      *
-     * @return Server
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function servers()
     {
@@ -418,7 +418,7 @@ class Project extends Model implements PresentableInterface
     /**
      * Has many relationship.
      *
-     * @return Heartbeat
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function heartbeats()
     {
@@ -429,18 +429,7 @@ class Project extends Model implements PresentableInterface
     /**
      * Has many relationship.
      *
-     * @return Notification
-     */
-    public function notifications()
-    {
-        return $this->hasMany(Notification::class)
-                    ->orderBy('name');
-    }
-
-    /**
-     * Has many relationship.
-     *
-     * @return Deployment
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function deployments()
     {
@@ -451,17 +440,18 @@ class Project extends Model implements PresentableInterface
     /**
      * Has many relationship.
      *
-     * @return SharedFile
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function notifyEmails()
+    public function channels()
     {
-        return $this->hasMany(NotifyEmail::class);
+        return $this->hasMany(Channel::class)
+                    ->orderBy('name');
     }
 
     /**
      * Has many urls to check.
      *
-     * @return CheckUrl
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function checkUrls()
     {
@@ -473,8 +463,8 @@ class Project extends Model implements PresentableInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      *
-     * @see Project::tags()
-     * @see Project::branches()
+     * @see Project::getTagsAttribute()
+     * @see Project::getBranchesAttribute()
      */
     public function refs()
     {

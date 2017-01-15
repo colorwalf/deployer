@@ -39,7 +39,6 @@ class CheckUrlController extends ResourceController
         return $this->repository->create($request->only(
             'title',
             'url',
-            'is_report',
             'period',
             'project_id'
         ));
@@ -58,7 +57,6 @@ class CheckUrlController extends ResourceController
         return $this->repository->updateById($request->only(
             'title',
             'url',
-            'is_report',
             'period'
         ), $url_id);
     }

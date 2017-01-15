@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use REBELinBLUE\Deployer\Contracts\RuntimeInterface;
 use REBELinBLUE\Deployer\Events\ServerLogChanged;
 use REBELinBLUE\Deployer\Events\ServerOutputChanged;
-use REBELinBLUE\Deployer\Presenters\ServerLogPresenter;
+use REBELinBLUE\Deployer\View\Presenters\ServerLogPresenter;
 use Robbo\Presenter\PresentableInterface;
 
 /**

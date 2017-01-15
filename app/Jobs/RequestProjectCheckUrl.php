@@ -2,8 +2,7 @@
 
 namespace REBELinBLUE\Deployer\Jobs;
 
-use Httpful\Exception\ConnectionErrorException;
-use Httpful\Request;
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\InteractsWithQueue;
@@ -34,26 +33,33 @@ class RequestProjectCheckUrl extends Job implements ShouldQueue
 
     /**
      * Execute the command.
-     * @dispatches SlackNotify
      */
     public function handle()
     {
         foreach ($this->links as $link) {
             try {
-                $response = Request::get($link->url)->send();
+                (new Client(['timeout'  => 30]))->get($link->url, [
+                    'headers' => [
+                        'User-Agent' => USER_AGENT,
+                    ],
+                ]);
 
-                $has_error = $response->hasErrors();
-            } catch (ConnectionErrorException $error) {
+                $has_error = false;
+                $missed    = 0;
+            } catch (\Exception $error) {
                 $has_error = true;
+                $missed    = $link->missed + 1;
             }
 
             $link->last_status = $has_error;
+            $link->missed      = $missed;
             $link->save();
 
+            // TODO: Throw event
             if ($has_error) {
                 foreach ($link->project->notifications as $notification) {
                     try {
-                        $this->dispatch(new SlackNotify($notification, $link->notificationPayload()));
+                        //$this->dispatch(new SlackNotify($notification, $link->notificationPayload()));
                     } catch (\Exception $error) {
                         // Don't worry about this error
                     }

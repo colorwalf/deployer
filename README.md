@@ -4,14 +4,14 @@
 [![Build Status](https://img.shields.io/travis/REBELinBLUE/deployer/master.svg?style=flat-square)](https://travis-ci.org/REBELinBLUE/deployer)
 [![Code Coverage](https://img.shields.io/codecov/c/github/REBELinBLUE/deployer/master.svg?style=flat-square)](https://codecov.io/gh/REBELinBLUE/deployer)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/686dd98b-c0e5-465b-8f14-29b1cab47f3b.svg?style=flat-square)](https://insight.sensiolabs.com/projects/686dd98b-c0e5-465b-8f14-29b1cab47f3b)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](/LICENSE.md)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](/docs/LICENSE.md)
 [![Laravel Version](https://shield.with.social/cc/github/REBELinBLUE/deployer/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 [![Latest Version](https://img.shields.io/github/release/REBELinBLUE/deployer.svg?style=flat-square)](https://github.com/REBELinBLUE/deployer/releases)
 [![Gitter](https://img.shields.io/badge/chat-on%20gitter-brightgreen.svg?style=flat-square)](https://gitter.im/REBELinBLUE/deployer)
 
 Deployer is a PHP Application deployment system powered by [Laravel 5.3](http://laravel.com), written & maintained by [Stephen Ball](https://github.com/REBELinBLUE).
 
-Check out the [releases](https://github.com/REBELinBLUE/deployer/releases), [license](/LICENSE.md), [screenshots](/docs/SCREENSHOTS.md), and [contribution guidelines](/.github/CONTRIBUTING.md).
+Check out the [releases](https://github.com/REBELinBLUE/deployer/releases), [license](/docs/LICENSE.md), [screenshots](/docs/SCREENSHOTS.md), [FAQs](/docs/FAQ.md) and [contribution guidelines](/.github/CONTRIBUTING.md).
 
 ## What it does
 
@@ -34,33 +34,6 @@ Check out the [releases](https://github.com/REBELinBLUE/deployer/releases), [lic
 ## Usage in production
 
 The `master` branch of this repository is a development branch and **should not** be used in production. Changes are merged into the `release` branch when they are considered stable and may then be tagged for release at any time. It is recommended that you use the latest tag [release](https://github.com/REBELinBLUE/deployer/releases) for production. For information on contributing see [contribution guidelines](/.github/CONTRIBUTING.md).
-
-### Common Error
-
-If you see an error like the following in the logs
-
-```
-'ErrorException' with message 'file_get_contents(/var/www/deployer/public/build/rev-manifest.json): failed to open stream: No such file or directory' in /var/www/deployer/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php:343
-```
-
-or the following on the page
-
-```
-ErrorException (E_ERROR) file_get_contents(/var/www/deployer/public/build/rev-manifest.json): failed to open stream: No such file or directory
-```
-
-it means you are not using a production build. You either need to checkout the `release` branch or a specific release, or install the additional development dependencies
-
-```shell
-$ composer install
-$ npm install (or yarn install)
-```
-
-and then build the assets
-
-```shell
-$ gulp
-```
 
 ## Requirements
 
@@ -147,4 +120,4 @@ $ php artisan app:update
 
 ## License
 
-Deployer is licensed under [The MIT License (MIT)](/LICENSE.md).
+Deployer is licensed under [The MIT License (MIT)](/docs/LICENSE.md).
